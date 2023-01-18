@@ -69,3 +69,7 @@ small {
   display: block;
   margin:auto;
 }
+
+.image_choose {
+  margin-bottom: 1em;
+}
