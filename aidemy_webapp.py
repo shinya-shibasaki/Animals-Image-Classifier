@@ -7,10 +7,10 @@ from tensorflow.keras.preprocessing import image
 import numpy as np
 
 
-classes = ["Dogs", "Cats", "Rabbits"]
+classes = ["犬", "猫", "うさぎ"]
 image_size = 150
 
-UPLOAD_FOLDER = "uploads"
+UPLOAD_FOLDER = "static/uploads"
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
 app = Flask(__name__)
@@ -35,6 +35,7 @@ def upload_file():
             filename = secure_filename(file.filename)
             file.save(os.path.join(UPLOAD_FOLDER, filename))
             filepath = os.path.join(UPLOAD_FOLDER, filename)
+            print(filepath)
 
             #受け取った画像を読み込み、np形式に変換
             # img = image.load_img(filepath, grayscale=True, target_size=(image_size,image_size))
@@ -51,9 +52,9 @@ def upload_file():
             print(result)
             predicted = result.argmax()
             print(predicted)
-            pred_answer = "これは " + classes[predicted] +  " です"
+            pred_answer = "これは " + classes[predicted] +  " の画像です"
 
-            return render_template("index.html",answer=pred_answer)
+            return render_template("index.html",answer=pred_answer, imagefile=filepath)
 
     return render_template("index.html",answer="")
 
