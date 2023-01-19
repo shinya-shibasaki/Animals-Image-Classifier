@@ -68,6 +68,8 @@ small {
   color: #444444;
   display: block;
   margin:auto;
+  max-width:50%;
+  height:auto;
 }
 
 .image_choose {
